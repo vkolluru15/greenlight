@@ -12,7 +12,8 @@
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
+		<script src="plugin/spreadsheet/ruleJS.all.full.min.js"></script>
+   <link rel="stylesheet" href="plugin/spreadsheet/spreadsheet.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -38,7 +39,7 @@
             <li>Sree Sudarsanan</li>
         </ul></section>
 				<section>
-					<h4> T3 Cases </h4>
+					<p> T3 Cases </p>
 					<ul>
 						<li>Product defects</li>
 						<li>T3 Resolutions/Recommendations</li>
@@ -47,7 +48,7 @@
 				<section>
 					<div class="sl-block" data-block-type="text" style="width: 806px; left: 6px; top: 33px; height: auto;" data-block-id="92604b97c25f7a9a48b823161d0372fb">
 					<div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
-							<h2>Recommendations</h2>
+							<p>Recommendations<p>
 					</div>
 				</div>
 				<div class="sl-block" data-block-type="text" style="width: 806px; left: 23px; top: 124px; height: auto;" data-block-id="07c99a94ed5042ca595b3ec855433927">
@@ -61,13 +62,96 @@
 				</div>
 				</section>
 				<section>
-					<h4> Errors </h4>
+					<p> Errors </p>
 					<ul>
 						<li>Java heap space</li>
 						<li>Process discarded due to system load</li>
 				</ul>
 				 </section>
-				 <section data-external="https://vkolluru15.github.io/greenlight/reveal.js-master/java_heap_space_train_data.csv"> </section>
+				 <section >
+					 <p align = 'left'> Features for Java heap space </p>
+					 <pre><code data-trim data-noescape>
+						 %matplotlib inline
+							import numpy as np
+							import pandas as pd
+						 java_heap_space_train_data = pd.read_csv('java_heap_space_train_data.csv')
+						 list(java_heap_space_train_data)
+
+						 ['ERROR_ID',
+							 'LAUNCH_ELAPSED',
+							 'TOPLEVELEXECUTIONID',
+							 'accountid',
+							 'containerid',
+							 'dategroup',
+							 'elapsed',
+							 'error',
+							 'errordocumentcount',
+							 'inbound',
+							 'inboundsize',
+							 'outbound',
+							 'outboundsize',
+							 'starttime',
+							 'status',
+							 'recorddate',
+							 'atomArch',
+							 'atomFreeDiskSpace',
+							 'atomHome',
+							 'atomTimeZone',
+							 'fileEncoding',
+							 'infrastructureProvider',
+							 'javaHome',
+							 'javaVMName',
+							 'javaVersion',
+							 'localFreeDiskSpace',
+							 'maxMemory',
+							 'maxOpenFiles',
+							 'osArch',
+							 'osName',
+							 'osVersion',
+							 'systemCpuCount',
+							 'systemTotalMemory',
+							 'tempFreeDiskSpace',
+							 'unlimitedCrypto',
+							 'Heap Space',
+							 'Number of concurrent executions',
+							 'Purge Days',
+							 'Classifier']
+		</code></pre> </section>
+		<section>
+			<p>Significant features for heap space</p>
+			 <div class="spreadsheet" data-delimiter="	">
+		metrics	elapsed	inbound	inboundsize	outbound	outboundsize	Heap Space	Number of concurrent executions	Purge Days
+count	112	112	104	112	104	112	112	112
+mean	107692.973214286	9.6875	6825.4230769231	2.3839285714	69396.9038461538	2048	26.8303571429	25.7142857143
+std	385124.591749133	92.5127730407	61302.9866829216	7.9324235254	675107.500696856	1037.7455814851	14.0590058937	7.117328899
+min	0	0	0	0	0	1024	1	14
+25%	75.25	1	0	0	0	1024	17	14
+50%	775.5	1	0	0	0	2048	28	30
+75%	15696.25	1	0	1	0	2048	37	30
+max	3214048	980	619933	60	6885649	4096	50	30
+
+		</div> </section>
+
+		<section>
+			<p>Predicted vs Actual</p>
+			 <div class="spreadsheet" data-delimiter="	">
+				 trueLabel	score	Score rounded	Percentage correct
+ 4	3.668837	4	100	91.720925
+ 4	3.961308	4	100	99.0327
+ 4	3.000921	3	75	75.023025
+ 4	3.272091	3	75	81.802275
+ 4	3.944166	4	100	98.60415
+ 4	3.331173	3	75	83.279325
+ 4	3.92385	4	100	98.09625
+ 4	4.074187	4	100	101.854675
+ 4	3.359158	3	75	83.97895
+ 4	3.975747	4	100	99.393675
+ 4	3.617389	4	100	90.434725
+ 4	3.88001	4	100	97.00025
+ 4	2.947992	3	75	73.6998
+ 4	3.990688	4	100	99.7672
+		</div> </section>
+
 			</div>
 		</div>
 
@@ -83,13 +167,20 @@
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/spreadsheet/spreadsheet.js' },
 				{ src: 'plugin/external/external.js', condition: function() { return !!document.querySelector( '[data-external]' ); } },
 					// Chart.min.js
 			    { src: 'plugin/chartjs/Chart.min.js'},
 			    // the plugin
 			    { src: 'plugin/chartjs/charted.js'},
-					{ src: 'plugin/highlight/highlight.js', async: false, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				],
+				spreadsheet: {
+	  fontsize: 16,
+	  width: 110,
+	  delimiter: ",",
+	  precision: 4 // the maximum number of digits after the comma
+  }
 
 			});
 		</script>
