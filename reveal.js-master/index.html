@@ -6,13 +6,6 @@
 
 		<title>Boomi Intelligence</title>
 
-		<script src="https://sdk.amazonaws.com/js/aws-sdk-2.265.1.min.js"></script>
-
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/sky.css">
 	<!--	<link rel="stylesheet" href="css/theme/black.css"> -->
@@ -49,7 +42,7 @@
 					<p> T3 Cases </p>
 					<ul>
 						<li>Product defects</li>
-						<li>T3 Resolutions/Recommendations</li>
+						<li>Recomendations/Resolutions</li>
 				</ul>
 				 </section>
 				<section>
@@ -75,55 +68,6 @@
 						<li>Process discarded due to system load</li>
 				</ul>
 				 </section>
-				 <section >
-					 <p align = 'left'> Features for Java heap space </p>
-					 <pre><code data-trim data-noescape>
-						 %matplotlib inline
-							import numpy as np
-							import pandas as pd
-						 java_heap_space_train_data = pd.read_csv('java_heap_space_train_data.csv')
-						 list(java_heap_space_train_data)
-
-						 ['ERROR_ID',
-							 'LAUNCH_ELAPSED',
-							 'TOPLEVELEXECUTIONID',
-							 'accountid',
-							 'containerid',
-							 'dategroup',
-							 'elapsed',
-							 'error',
-							 'errordocumentcount',
-							 'inbound',
-							 'inboundsize',
-							 'outbound',
-							 'outboundsize',
-							 'starttime',
-							 'status',
-							 'recorddate',
-							 'atomArch',
-							 'atomFreeDiskSpace',
-							 'atomHome',
-							 'atomTimeZone',
-							 'fileEncoding',
-							 'infrastructureProvider',
-							 'javaHome',
-							 'javaVMName',
-							 'javaVersion',
-							 'localFreeDiskSpace',
-							 'maxMemory',
-							 'maxOpenFiles',
-							 'osArch',
-							 'osName',
-							 'osVersion',
-							 'systemCpuCount',
-							 'systemTotalMemory',
-							 'tempFreeDiskSpace',
-							 'unlimitedCrypto',
-							 'Heap Space',
-							 'Number of concurrent executions',
-							 'Purge Days',
-							 'Classifier']
-		</code></pre> </section>
 		<section>
 			<p>Significant features for heap space</p>
 			 <div class="spreadsheet" data-delimiter="	">
@@ -139,46 +83,116 @@ max	3214048	980	619933	60	6885649	4096	50	30
 
 		</div> </section>
 
+	<section>
+			<h3>Algorithm</h3>
+			<p>AWS ML used Multinomial Logistic Regression to train the data</p>
+			<img src="images/prediction.png"  height="400" width="400">
+		</section>
+
 		<section>
 			<p>Predicted vs Actual</p>
 			 <div class="spreadsheet" data-delimiter="	">
-				 trueLabel	score	Score rounded	Percentage correct
- 4	3.668837	4	100	91.720925
- 4	3.961308	4	100	99.0327
- 4	3.000921	3	75	75.023025
- 4	3.272091	3	75	81.802275
- 4	3.944166	4	100	98.60415
- 4	3.331173	3	75	83.279325
- 4	3.92385	4	100	98.09625
- 4	4.074187	4	100	101.854675
- 4	3.359158	3	75	83.97895
- 4	3.975747	4	100	99.393675
- 4	3.617389	4	100	90.434725
- 4	3.88001	4	100	97.00025
- 4	2.947992	3	75	73.6998
- 4	3.990688	4	100	99.7672
+				 trueLabel	score	Score rounded	% correct
+ 4	3.668837	4	91.720925
+ 4	3.961308	4	99.0327
+ 4	3.000921	3	75.023025
+ 4	3.272091	3	81.802275
+ 4	3.944166	4	98.60415
+ 4	3.331173	3	83.279325
+ 4	3.92385	4	98.09625
+ 4	4.074187	4	101.854675
+ 4	3.359158	3	83.97895
+ 4	3.975747	4	99.393675
+ 4	3.617389	4	90.434725
+ 4	3.88001	4	97.00025
+ 4	2.947992	3	73.6998
+ 4	3.990688	4	99.7672
 		</div> </section>
 
-		<section>
-		<h3>Algorithm</h3>
-		<img src="images/prediction.png"  height="400" width="400">
-	</section>
+
 <section>
 	<p>Model Metrics</p>
 	<img src="images/model_stats.png"  height="200" width="400">
 </section>
 <section>
 	<p>Significant Features</p>
-	<img src="images/feature_significance.png"  height="400" width="400">
-</section>
-<section>
-	<p>Impact of features</p>
 <img src="images/feature_impacts.png"  height="400" width="400">
 </section>
+
+
+		<section >
+					 <p align = 'left'> Sample data set passed into AWS </p>
+					 <pre><code data-trim data-noescape>
+						 {
+							"ERROR_ID": "error-02e99c90-29af-4f78-9d00-316e449f199e-4N2NP3zjPk5npJguZMe5ZA",
+							"LAUNCH_ELAPSED": "6",
+							"TOPLEVELEXECUTIONID": "execution-02e99c90-29af-4f78-9d00-316e449f199e-2018.05.08",
+							"accountid": "12030",
+							"containerid": "39361",
+							"dategroup": "2018.05.08",
+							"elapsed": "301",
+							"error": "Error executing sql statement: Connection reset by peer: socket write error Caused by: Connection reset by peer: socket write error",
+							"errordocumentcount": "1",
+							"inbound": "1",
+							"inboundsize": "0",
+							"outbound": "0",
+							"outboundsize": "0",
+							"starttime": "2018-05-08 11:48:07",
+							"status": "ERROR",
+							"recorddate": "2018-05-08 11:48:09",
+							"atomArch": "64",
+							"atomFreeDiskSpace": "80241029120",
+							"atomHome": "C:\\Boomi AtomSphere\\Atom - DBregression",
+							"atomTimeZone": "America/New_York",
+							"fileEncoding": "windows-1252",
+							"infrastructureProvider": "AWS",
+							"javaHome": "c:\\program files\\java\\jre1.8.0_111",
+							"javaVMName": "Java HotSpot(TM) 64-Bit Server VM",
+							"javaVersion": "1.8.0_111-b14",
+							"localFreeDiskSpace": "1529584493220",
+							"maxMemory": "477626368",
+							"maxOpenFiles": "",
+							"osArch": "amd64",
+							"osName": "Windows Server 2008 R2",
+							"osVersion": "6.1",
+							"systemCpuCount": "4",
+							"systemTotalMemory": "8052658176",
+							"tempFreeDiskSpace": "80241029120",
+							"unlimitedCrypto": "1",
+							"Heap Space": "2048",
+							"Number of concurrent executions": "42",
+							"Purge Days": "30",
+							"Classifier": ""
+						}
+		</code></pre> </section>
+
 <section>
 	<p>Functional Demo</p>
 	<iframe src="./prediction.html" height="600px" width="900px" style="border:none;"></iframe>
 </section>
+<section>
+	<iframe src="http://172.16.13.243:8081/" height="600px" width="900px" style="border:none;"></iframe>
+</section>
+<section>
+	<div class="sl-block" data-block-type="text" style="width: 806px; left: 6px; top: 33px; height: auto;" data-block-id="92604b97c25f7a9a48b823161d0372fb">
+	<div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+			<p>Future Considerations<p>
+	</div>
+</div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 23px; top: 124px; height: auto;" data-block-id="07c99a94ed5042ca595b3ec855433927">
+	<div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+			<ul>
+					<li class="fragment" data-fragment-index="0">With prod data we can use identify real trends</li>
+					<li class="fragment" data-fragment-index="1">Research on more prominent errors and and predict solutions for them</li>
+					<li class="fragment" data-fragment-index="2">With more time we can prepare the data better for  training</li>
+			</ul>
+	</div>
+</div>
+</section>
+<section>
+	<h2>Questions?</h2>
+</section>
+
 
 			</div>
 		</div>

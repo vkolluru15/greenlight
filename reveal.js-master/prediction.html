@@ -16,8 +16,8 @@
 		};
 
 		AWS.config.update({
-		  accessKeyId: 'AKIAIQZ4KWFNPFF2US7A',
-		  secretAccessKey: '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',
+		  accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
+		  secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
 		  region: 'us-east-1'
 		});
 
@@ -198,7 +198,7 @@
 					var table = $("table").html();
 					var predictedScoresAWS=[];
 					var params = {
-					  MLModelId: 'ml-hYx5KJe9hJy', /* required */
+					  MLModelId: 'ml-XXXXXXXXXXX', /* required */
 					  PredictEndpoint: 'https://realtime.machinelearning.us-east-1.amazonaws.com', /* required */
 					  Record: myData[i]
 					};
